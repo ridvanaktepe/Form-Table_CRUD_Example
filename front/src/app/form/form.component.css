@@ -1,0 +1,17 @@
+.nonclicable {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: rgb(58, 158, 246);
+  border:none;
+}
+
+.clickable {
+  pointer-events: auto;
+  cursor: pointer;
+  background-color: rgb(2, 117, 216);
+  border:none;
+}
+
+.error{
+  color: red;
+}

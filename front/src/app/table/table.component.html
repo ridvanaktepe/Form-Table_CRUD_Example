@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{userList[0]}}
+    <tr *ngFor="let user of userList$ | async ">
+      <td>{{user.UserId}}</td>
+      <td>{{user.UserName}}</td>
+      <td>{{user.UserSurname}}</td>
+      <td>{{user.UserEmail}}</td>
+      <td>{{user.UserPassword}}</td>
+    </tr>
+      </tbody>
+</table>

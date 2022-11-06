@@ -1,0 +1,6 @@
+<input type="checkbox" class="form-check-input" [checked]="isChecked" (change)="isChecked = !isChecked">
+! işareti null ve tanımsız gelmeyeceğini garanti ettiğimizi söyler
+? işareti nul gelebileceğini söyler
+
+dotnet ef migrations add _migrationName
+dotnet ef database update
