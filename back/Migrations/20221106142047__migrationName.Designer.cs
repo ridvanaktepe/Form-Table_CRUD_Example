@@ -11,7 +11,7 @@ using back.Database.Concrete;
 namespace back.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221101060922__migrationName")]
+    [Migration("20221106142047__migrationName")]
     partial class _migrationName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

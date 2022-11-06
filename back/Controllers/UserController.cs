@@ -1,6 +1,7 @@
 using back.business.Abstract;
 using back.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace back.Controllers
 {
@@ -28,7 +29,7 @@ namespace back.Controllers
                 Console.WriteLine(i.GetType());
             }
             
-            return Ok(_users);
+            return Ok(JsonConvert.SerializeObject(_users));
         }
 
         //http://localhost:4201/api/user/getbyid

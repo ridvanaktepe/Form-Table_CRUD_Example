@@ -1,18 +1,23 @@
-import { IUser } from "./IUser";
+import { IUser } from './IUser';
 
 export class User implements IUser {
-
-UserId: string;
+  UserId: string;
   UserName: string;
   UserSurname: string;
   UserEmail: string;
   UserPassword: string;
 
-  constructor(id: string="", name: string="", surname: string="", email: string="", password: string="") {
-    this.UserId = id;
-    this.UserName = name;
-    this.UserSurname = surname;
-    this.UserEmail = email;
-    this.UserPassword = password;
+  constructor(
+    UserId: string = '',
+    UserName: string = '',
+    UserSurname: string = '',
+    UserEmail: string = '',
+    UserPassword: string = ''
+  ) {
+    this.UserId = UserId;
+    this.UserName = UserName;
+    this.UserSurname = UserSurname;
+    this.UserEmail = UserEmail;
+    this.UserPassword = UserPassword;
   }
 }

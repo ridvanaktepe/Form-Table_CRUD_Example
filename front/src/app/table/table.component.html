@@ -9,13 +9,14 @@
     </tr>
   </thead>
   <tbody>
-    {{userList[0]}}
-    <tr *ngFor="let user of userList$ | async ">
+    <tr *ngFor="let user of userList">
       <td>{{user.UserId}}</td>
       <td>{{user.UserName}}</td>
       <td>{{user.UserSurname}}</td>
       <td>{{user.UserEmail}}</td>
       <td>{{user.UserPassword}}</td>
     </tr>
-      </tbody>
+  </tbody>
 </table>
+
+<button type="button" class="btn btn-primary"  (click)="getAllUser()">Reflesh</button>

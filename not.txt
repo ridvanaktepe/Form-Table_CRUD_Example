@@ -2,5 +2,6 @@
 ! işareti null ve tanımsız gelmeyeceğini garanti ettiğimizi söyler
 ? işareti nul gelebileceğini söyler
 
+npm install -g @angular/cli
 dotnet ef migrations add _migrationName
 dotnet ef database update

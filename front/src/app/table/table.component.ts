@@ -8,26 +8,28 @@ import { DbServiceService } from '../service/db-service.service';
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
-  providers: [DbServiceService]
+  providers: [DbServiceService],
 })
-
 export class TableComponent implements OnInit {
-
-
-
-  constructor(private service: DbServiceService) { }
-
   userList: User[] = [];
-  userList$: Observable<User[]> = new Observable();
+  // userList$: Observable<User[]> = new Observable();
+
+  constructor(private service: DbServiceService) {}
 
   ngOnInit(): void {
-    this.userList$ = this.getAllUser();
-    console.log(this.userList$);
+    // this.userList$ = this.getAllUser();
+    this.service.GetUserList().subscribe((data) => {
+      this.userList = data;
+    });
+    console.log(this.userList);
   }
 
   getAllUser(): Observable<User[]> {
-    return this.service.GetUserList().pipe(map(data => {console.log(data); return data; }));
-
+    return this.service.GetUserList().pipe(
+      map((data) => {
+        this.userList = data;
+        return this.userList;
+      })
+    );
   }
-
 }
