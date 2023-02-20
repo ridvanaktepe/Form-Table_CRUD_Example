@@ -33,7 +33,7 @@ namespace back.Database.Concrete
             return await _dbcontext.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity?> GetById(string id)
+        public async Task<TEntity?> GetById(int id)
         {
             return await _dbcontext.Set<TEntity>().FindAsync(id);
         }

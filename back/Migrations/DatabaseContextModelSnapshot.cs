@@ -23,8 +23,11 @@ namespace back.Migrations
 
             modelBuilder.Entity("back.Models.User", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
@@ -48,7 +51,7 @@ namespace back.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1",
+                            UserId = 1,
                             UserEmail = "ridvan@gmail.com",
                             UserName = "Rıdvan",
                             UserPassword = "123",
@@ -56,7 +59,7 @@ namespace back.Migrations
                         },
                         new
                         {
-                            UserId = "2",
+                            UserId = 2,
                             UserEmail = "esra@gmail.com",
                             UserName = "Esra",
                             UserPassword = "321",

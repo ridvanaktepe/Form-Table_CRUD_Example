@@ -1,35 +1,138 @@
-import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { map, Observable, BehaviorSubject, switchMap } from 'rxjs';
 import { IUser } from '../model/IUser';
 import { User } from '../model/User';
 import { DbServiceService } from '../service/db-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
-  providers: [DbServiceService],
+  providers: [],
 })
 export class TableComponent implements OnInit {
-  userList: User[] = [];
-  // userList$: Observable<User[]> = new Observable();
 
-  constructor(private service: DbServiceService) {}
+  searchText: any;
+  orderHeader: any;
+  orderReverse: boolean = false;
+  page: number = 1;
+  itemCount: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [5, 10 ,15 ,20];
+  userList$: User[] = [];
+  userEditCopy: User = {
+    UserId: 0,
+    UserName: '',
+    UserSurname: '',
+    UserEmail: '',
+    UserPassword: '',
+    editUser: false,
+    editUserField: ''
+  };
 
-  ngOnInit(): void {
-    // this.userList$ = this.getAllUser();
-    this.service.GetUserList().subscribe((data) => {
-      this.userList = data;
-    });
-    console.log(this.userList);
+  constructor(public service: DbServiceService) { }
+
+  //  ngOnChanges(changes: SimpleChanges): void {
+  //     console.log(changes);
+  //     console.log(this.userList$);
+  //   }
+
+
+  ngOnInit() {
+    this.getAllUser();
+    this.service.userListSubject.subscribe(
+      userListStream => {
+        this.userList$ = userListStream;
+        this.userList$.forEach(_user => { _user.editUserField = '' });
+      }
+    );
   }
 
-  getAllUser(): Observable<User[]> {
-    return this.service.GetUserList().pipe(
-      map((data) => {
-        this.userList = data;
-        return this.userList;
-      })
-    );
+  getAllUser(): void {
+    this.service.GetUserList().subscribe(responce => {
+      // console.log(responce);
+      this.userList$ = responce;
+      // this.cdref.detectChanges();
+    });
+
+  }
+
+  checkEdit(user: User) {
+    let userEdited = this.userList$.find((_user) => _user.UserId === this.userEditCopy.UserId);
+    let index = this.userList$.findIndex((_user) => _user.UserId === this.userEditCopy.UserId);
+
+    if (this.userEditCopy.UserName !== userEdited?.UserName || this.userEditCopy.UserSurname !== userEdited?.UserSurname ||
+      this.userEditCopy.UserEmail !== userEdited?.UserEmail || this.userEditCopy.UserPassword !== userEdited?.UserPassword) {
+
+      this.userList$[index] = this.userEditCopy;
+
+      if (user.UserId !== this.userEditCopy.UserId) {
+        this.userEditCopy = { ...user };
+      }
+
+    }
+    else {
+      this.userEditCopy = { ...user };
+    }
+  }
+
+  userEdit(user: User) {
+    //just let one user can be edited same time
+    this.userList$.forEach(_user => { _user.editUserField = ''; });
+
+    this.checkEdit(user);
+
+    user.editUserField = 'all'
+  }
+
+  fieldEdit(user: User, _editUserField: string) {
+    //just let one user can be edited same time
+    this.userList$.forEach(_user => { _user.editUserField = ''; });
+
+    this.checkEdit(user);
+
+    user.editUserField = _editUserField;
+  }
+
+  cancelEdit() {
+    this.userList$.forEach(_user => { _user.editUserField = ''; });
+  }
+
+  updateUser(user: User) {
+
+    this.service.UpdateUser(user).subscribe({
+      next: (_) => {
+        this.userEditCopy = { ...user };
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+
+    user.editUser = false;
+    user.editUserField = '';
+  }
+
+  deleteUser(user: User) {
+    this.service.DeleteUser(user);
+    // let index = this.userList$.indexOf(user);
+    // this.userList$.splice(index, 1);
+  }
+
+  sort(headerName:String){
+    this.orderHeader = headerName;
+    console.log(this.orderHeader);
+    this.orderReverse = !this.orderReverse;
+    console.log(this.orderReverse);
+  }
+
+  onTableDataChange(event:any){
+    this.page = event;
+  }
+
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
   }
 }

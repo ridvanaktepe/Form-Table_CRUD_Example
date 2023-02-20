@@ -3,65 +3,56 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/User';
 import { IUser } from '../model/IUser';
 import { DbServiceService } from '../service/db-service.service';
-import { HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
-  providers: [DbServiceService],
+  providers: [],
 })
 export class FormComponent implements OnInit {
+
   isChecked: boolean = false;
 
   user: User = {
-    UserId: '',
+    UserId: 0,
     UserName: '',
     UserSurname: '',
     UserEmail: '',
     UserPassword: '',
+    editUser: false,
+    editUserField: ''
   };
-  userList: User[] = [];
-  iuserList?: IUser;
- 
-  constructor(private service: DbServiceService) {
-    // service.GetUserList().subscribe(response => { this.userList = response })
-  }
 
   UserForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    surname: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-    ]),
+    surname: new FormControl('', [Validators.required, Validators.minLength(2),]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-    ]),
+    password: new FormControl('', [Validators.required, Validators.minLength(2),]),
   });
 
-  ngOnInit(): void {}
+  userList$:User[] = [];
+
+  constructor(private service: DbServiceService) { }
+
+  ngOnInit(): void {
+    this.service.userListSubject.subscribe(userListStream=>{this.userList$=userListStream;});
+  }
 
   PostForm() {
-    console.log(this.UserForm.value);
-    console.log(this.UserForm.status);
-    console.log('-----------------------------' + this.user.UserId);
-
     if (this.UserForm.valid) {
       this.user.UserName = this.UserForm.value.name!;
       this.user.UserSurname = this.UserForm.value.surname!;
       this.user.UserEmail = this.UserForm.value.email!;
       this.user.UserPassword = this.UserForm.value.password!;
-      console.log(this.user);
-      this.service.AddUser(this.user).subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+
+      this.service.AddUser(this.user).subscribe((responce)=>{
+        console.log(this.service.userListSubject.value);
+        console.log(responce);
+       });
+
+      }
     }
   }
-}
+

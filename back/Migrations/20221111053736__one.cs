@@ -4,7 +4,7 @@
 
 namespace back.Migrations
 {
-    public partial class _migrationName : Migration
+    public partial class _one : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,8 @@ namespace back.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserSurname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -26,12 +27,12 @@ namespace back.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "UserEmail", "UserName", "UserPassword", "UserSurname" },
-                values: new object[] { "1", "ridvan@gmail.com", "Rıdvan", "123", "Aktepe" });
+                values: new object[] { 1, "ridvan@gmail.com", "Rıdvan", "123", "Aktepe" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "UserEmail", "UserName", "UserPassword", "UserSurname" },
-                values: new object[] { "2", "esra@gmail.com", "Esra", "321", "Aktepe" });
+                values: new object[] { 2, "esra@gmail.com", "Esra", "321", "Aktepe" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserId",

@@ -11,8 +11,8 @@ using back.Database.Concrete;
 namespace back.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221106142047__migrationName")]
-    partial class _migrationName
+    [Migration("20221111053736__one")]
+    partial class _one
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,8 +25,11 @@ namespace back.Migrations
 
             modelBuilder.Entity("back.Models.User", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
@@ -50,7 +53,7 @@ namespace back.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1",
+                            UserId = 1,
                             UserEmail = "ridvan@gmail.com",
                             UserName = "Rıdvan",
                             UserPassword = "123",
@@ -58,7 +61,7 @@ namespace back.Migrations
                         },
                         new
                         {
-                            UserId = "2",
+                            UserId = 2,
                             UserEmail = "esra@gmail.com",
                             UserName = "Esra",
                             UserPassword = "321",

@@ -2,6 +2,32 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "FireSharp/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "RestSharp": "104.4.0"
+        },
+        "compile": {
+          "lib/net45/FireSharp.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FireSharp.dll": {}
+        }
+      },
+      "FireSharp.Serialization.JsonNet/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "FireSharp": "1.1.0",
+          "Newtonsoft.Json": "6.0.4",
+          "RestSharp": "104.4.0"
+        },
+        "compile": {
+          "lib/net45/FireSharp.Serialization.JsonNet.dll": {}
+        },
+        "runtime": {
+          "lib/net45/FireSharp.Serialization.JsonNet.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -542,6 +568,19 @@
           }
         }
       },
+      "RestSharp/104.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/net4/RestSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net4/RestSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -968,6 +1007,30 @@
     }
   },
   "libraries": {
+    "FireSharp/1.1.0": {
+      "sha512": "FRkskFsuZeaWm/qNHpydFlaUAU+g6PzIgeFZYixkyARXaSzsooDLFmOYKmkNPjQiXWflCI2cVgYCILZYrqa8Uw==",
+      "type": "package",
+      "path": "firesharp/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firesharp.1.1.0.nupkg.sha512",
+        "firesharp.nuspec",
+        "lib/net45/FireSharp.dll"
+      ]
+    },
+    "FireSharp.Serialization.JsonNet/1.1.0": {
+      "sha512": "Cm2ZuswLT4iPLLpUzKa6oiCKaDv+d1Dc6WxC/xVb19prnQR5zK0jnOfpdVXIabM00SaqzP7kA9l7381FxPSVPA==",
+      "type": "package",
+      "path": "firesharp.serialization.jsonnet/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firesharp.serialization.jsonnet.1.1.0.nupkg.sha512",
+        "firesharp.serialization.jsonnet.nuspec",
+        "lib/net45/FireSharp.Serialization.JsonNet.dll"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -1773,6 +1836,30 @@
         "packageIcon.png"
       ]
     },
+    "RestSharp/104.4.0": {
+      "sha512": "noACbS/gvceWlZO4kaV6AepG1cTLtHRhHZftdve+lytX6AIFDk5bdzsq4FfJ2/byAH3Y04I92wlH/z95lb7UwQ==",
+      "type": "package",
+      "path": "restsharp/104.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35-client/RestSharp.dll",
+        "lib/net35-client/RestSharp.xml",
+        "lib/net35/RestSharp.dll",
+        "lib/net35/RestSharp.xml",
+        "lib/net4-client/RestSharp.dll",
+        "lib/net4-client/RestSharp.xml",
+        "lib/net4/RestSharp.dll",
+        "lib/net4/RestSharp.xml",
+        "lib/sl4-wp71/RestSharp.WindowsPhone.dll",
+        "lib/sl4-wp71/RestSharp.WindowsPhone.xml",
+        "lib/sl4/RestSharp.Silverlight.dll",
+        "lib/sl4/RestSharp.Silverlight.xml",
+        "readme.txt",
+        "restsharp.104.4.0.nupkg.sha512",
+        "restsharp.nuspec"
+      ]
+    },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "sha512": "9kyFSIdN3T0qjDQ2R0HRXYIhS3l5psBzQi6qqhdLz+SzFyEy4sVxNOke+yyYv8Cu8rPER12c3RDjLT8wF3WBYQ==",
       "type": "package",
@@ -2513,6 +2600,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "FireSharp.Serialization.JsonNet >= 1.1.0",
       "Microsoft.EntityFrameworkCore >= 6.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.10",
@@ -2524,26 +2612,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ridva\\.nuget\\packages\\": {}
+    "C:\\Users\\Ridvan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ridva\\OneDrive\\Belgeler\\VSCode\\website\\back\\back.csproj",
+      "projectUniqueName": "C:\\Users\\Ridvan\\Desktop\\website\\back\\back.csproj",
       "projectName": "back",
-      "projectPath": "C:\\Users\\ridva\\OneDrive\\Belgeler\\VSCode\\website\\back\\back.csproj",
-      "packagesPath": "C:\\Users\\ridva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ridva\\OneDrive\\Belgeler\\VSCode\\website\\back\\obj\\",
+      "projectPath": "C:\\Users\\Ridvan\\Desktop\\website\\back\\back.csproj",
+      "packagesPath": "C:\\Users\\Ridvan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ridvan\\Desktop\\website\\back\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ridva\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Ridvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2562,6 +2648,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "FireSharp.Serialization.JsonNet": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[6.0.10, )"
@@ -2616,8 +2706,40 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "'FireSharp 1.1.0' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
+      "libraryId": "FireSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "'FireSharp.Serialization.JsonNet 1.1.0' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
+      "libraryId": "FireSharp.Serialization.JsonNet",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "'RestSharp 104.4.0' paketi, proje hedef çerçevesi 'net6.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
+      "libraryId": "RestSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

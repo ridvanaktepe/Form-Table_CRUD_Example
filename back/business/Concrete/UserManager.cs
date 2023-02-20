@@ -6,24 +6,23 @@ namespace back.business.Concrete
 {
     public class UserManager : IUserManager
     {
-        public string _errorMessage { get; set; }="";
+        public string _errorMessage { get; set; } = "";
         private readonly IUnitOfWork _unitofwork;
 
         public UserManager(IUnitOfWork unitofwork)
         {
-           
+
             _unitofwork = unitofwork;
         }
 
-        public async Task<bool> Create(User entity)
+        public async Task<List<User>> Create(User entity)
         {
             if (Validation(entity))
             {
                 await _unitofwork.Users.Create(entity);
                 await _unitofwork.Save();
-                return true;
             }
-            return false;
+            return await _unitofwork.Users.GetAll();
         }
 
         public bool Delete(User entity)
@@ -53,7 +52,7 @@ namespace back.business.Concrete
             return await _unitofwork.Users.GetAll();
         }
 
-        public async Task<User?> GetById(string id)
+        public async Task<User?> GetById(int id)
         {
             return await _unitofwork.Users.GetById(id);
         }

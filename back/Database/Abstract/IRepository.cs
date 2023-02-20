@@ -2,7 +2,7 @@ namespace back.Database.Abstract
 {
     public interface IRepository<T>
     {
-        Task<T?> GetById(string id);
+        Task<T?> GetById(int id);
         Task<List<T>> GetAll();
         Task Create(T entity);
         void Update(T entity);

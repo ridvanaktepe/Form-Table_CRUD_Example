@@ -25,10 +25,11 @@ namespace back.Controllers
 
             foreach (User i in _users)
             {
-                Console.WriteLine("=============================================getall" +i.UserName);
+                Console.WriteLine("=============================================getall" + i.UserName);
                 Console.WriteLine(i.GetType());
+
             }
-            
+            Console.WriteLine(_users);
             return Ok(JsonConvert.SerializeObject(_users));
         }
 
@@ -42,20 +43,22 @@ namespace back.Controllers
             {
                 return NotFound();
             }
-            return Ok(_user);
+            return Ok(JsonConvert.SerializeObject(_user));
         }
 
         //http://localhost:4201/api/user/create
         [HttpPost("create")]
         public async Task<IActionResult> CreateUser(User user)
         {
-            var state = await _userManager.Create(user);
+            Console.WriteLine("===========================create");
 
-            if (!state)
-            {
-                return NotFound();
-            }
-            return Ok();
+            var _users = await _userManager.Create(user);
+            Console.WriteLine("\t===================================================================\t");
+            Console.WriteLine(_users);
+            Console.WriteLine("\t===================================================================\t");
+            Console.WriteLine(JsonConvert.SerializeObject(_users));
+            Console.WriteLine("\t===================================================================\t");
+            return Ok(JsonConvert.SerializeObject(_users));
         }
 
         //http://localhost:4201/api/user/update
@@ -72,15 +75,18 @@ namespace back.Controllers
         }
 
         //http://localhost:4201/api/user/delete
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteUser(User user)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            var state = await Task.Run(() => _userManager.Delete(user));
+            Console.WriteLine("delleeeleeeee");
+            var user = await _userManager.GetById(id);
 
-            if (!state)
+            if (user == null)
             {
                 return NotFound();
             }
+
+            var state = await Task.Run(() => _userManager.Delete(user));
             return Ok();
         }
 

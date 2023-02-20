@@ -1,7 +1,9 @@
 export interface IUser {
-  UserId: string;
+  UserId: number;
   UserName: string;
   UserSurname: string;
   UserEmail: string;
   UserPassword: string;
+  editUser: boolean;
+  editUserField: string;
 }

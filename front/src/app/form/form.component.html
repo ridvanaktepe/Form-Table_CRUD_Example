@@ -1,40 +1,47 @@
-<form [formGroup]="UserForm" (ngSubmit)="PostForm()">
-  <div class="form-group row my-2">
-    <label for="nameForm" class="col-sm-2 col-form-label">Name:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="nameForm" formControlName="name">
-      <span *ngIf="UserForm.get('name')?.invalid && (UserForm.get('name')?.dirty || UserForm.get('name')?.touched)" class="error">Invalid Name</span>
-    </div>
-  </div>
-
-  <div class="form-group row my-2">
-    <label for="surnameForm" class="col-sm-2 col-form-label">Surname:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="surnameForm" formControlName="surname">
-      <span *ngIf="UserForm.get('surname')?.invalid && (UserForm.get('surname')?.dirty || UserForm.get('surname')?.touched)" class="error">Invalid Surname</span>
-    </div>
-  </div>
-
-  <div class="form-group row my-2">
-    <label for="emailForm" class="col-sm-2 col-form-label">Email:</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" name="emailForm" formControlName="email">
-      <span *ngIf="UserForm.get('email')?.invalid && (UserForm.get('email')?.dirty || UserForm.get('email')?.touched)" class="error">Invalid Email</span>
-    </div>
-  </div>
-
-  <div class="form-group row my-2">
-    <label for="passwordForm" class="col-sm-2 col-form-label">Password:</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" name="passwordForm" formControlName="password">
-      <span *ngIf="UserForm.get('password')?.invalid && (UserForm.get('password')?.dirty || UserForm.get('password')?.touched)" class="error">Invalid Password</span>
+<div class="container mt-3">
+  <form [formGroup]="UserForm" (ngSubmit)="PostForm()">
+    <div class="form-group row my-2">
+      <label for="nameForm" class="col-sm-2 col-form-label">Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="nameForm" formControlName="name">
+        <span *ngIf="UserForm.get('name')?.invalid && (UserForm.get('name')?.dirty || UserForm.get('name')?.touched)"
+          class="error">Invalid Name</span>
+      </div>
     </div>
 
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}">
-    <label class="form-check-label" for="checkForm">I accept the accuracy of the information.</label>
-  </div>
-  <button type="submit" class="btn btn-primary" [ngClass]="isChecked ? 'clickable' :'nonclicable'">Submit</button>
-</form>
+    <div class="form-group row my-2">
+      <label for="surnameForm" class="col-sm-2 col-form-label">Surname:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="surnameForm" formControlName="surname">
+        <span
+          *ngIf="UserForm.get('surname')?.invalid && (UserForm.get('surname')?.dirty || UserForm.get('surname')?.touched)"
+          class="error">Invalid Surname</span>
+      </div>
+    </div>
 
+    <div class="form-group row my-2">
+      <label for="emailForm" class="col-sm-2 col-form-label">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" name="emailForm" formControlName="email">
+        <span *ngIf="UserForm.get('email')?.invalid && (UserForm.get('email')?.dirty || UserForm.get('email')?.touched)"
+          class="error">Invalid Email</span>
+      </div>
+    </div>
+
+    <div class="form-group row my-2">
+      <label for="passwordForm" class="col-sm-2 col-form-label">Password:</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" name="passwordForm" formControlName="password">
+        <span
+          *ngIf="UserForm.get('password')?.invalid && (UserForm.get('password')?.dirty || UserForm.get('password')?.touched)"
+          class="error">Invalid Password</span>
+      </div>
+
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}">
+      <label class="form-check-label" for="checkForm">I accept the accuracy of the information.</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [ngClass]="isChecked ? 'clickable' :'nonclicable'">Submit</button>
+  </form>
+</div>

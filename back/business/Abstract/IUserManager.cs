@@ -4,9 +4,9 @@ namespace back.business.Abstract
 {
     public interface IUserManager : IValidator<User>
     {
-        Task<User?> GetById(string id);
+        Task<User?> GetById(int id);
         Task<List<User>> GetAll();
-        Task<bool> Create(User entity);
+        Task<List<User>> Create(User entity);
         bool Update(User entity);
         bool Delete(User entity);
     }

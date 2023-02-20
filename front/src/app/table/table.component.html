@@ -1,22 +1,87 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Surname</th>
-      <th scope="col">Email</th>
-      <th scope="col">Password</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of userList">
-      <td>{{user.UserId}}</td>
-      <td>{{user.UserName}}</td>
-      <td>{{user.UserSurname}}</td>
-      <td>{{user.UserEmail}}</td>
-      <td>{{user.UserPassword}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container mt-3">
+  <div>
+    <div>
+      <input class="form-control" type="text" placeholder="Search" name="search" [(ngModel)]="searchText"
+        autocomplete="off">
+    </div>
 
-<button type="button" class="btn btn-primary"  (click)="getAllUser()">Reflesh</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"> Id <i class="fa fa-sort" (click)="sort('UserId')"></i></th>
+          <th scope="col"> Name <i class="fa fa-sort" (click)="sort('UserName')"></i></th>
+          <th scope="col"> Surname <i class="fa fa-sort" (click)="sort('UserSurname')"></i></th>
+          <th scope="col"> Email <i class="fa fa-sort" (click)="sort('UserEmail')"></i></th>
+          <th scope="col"> Password <i class="fa fa-sort" (click)="sort('UserPassword')"></i></th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList$ | search: searchText | order:orderHeader:orderReverse |
+        paginate:{itemsPerPage:tableSize, currentPage:page, totalItems:itemCount }; let i=index" class="container">
+          <td class="col-1">
+            {{user.UserId}}
+          </td>
+          <!-- (dblclick)="fieldEdit(user,'username')"  -->
+          <td class="col-2" (dblclick)="fieldEdit(user,'username')">
+            <div *ngIf="!(user.editUserField == 'all' || user.editUserField == 'username')"> {{user.UserName}} </div>
+            <div *ngIf="user.editUserField == 'all' || user.editUserField == 'username'">
+              <input type="text" [(ngModel)]="user.UserName" class="form-control">
+            </div>
+          </td>
+          <!-- (dblclick)="fieldEdit(user,'usersurname')"  -->
+          <td class="col-2" (dblclick)="fieldEdit(user,'usersurname')">
+            <div *ngIf="!(user.editUserField == 'all' || user.editUserField == 'usersurname')"> {{user.UserSurname}}
+            </div>
+            <div *ngIf="user.editUserField == 'all' || user.editUserField == 'usersurname'">
+              <input type="text" [(ngModel)]="user.UserSurname" class="form-control">
+            </div>
+          </td>
+          <!-- (dblclick)="fieldEdit(user,'useremail')"  -->
+          <td class="col-3" (dblclick)="fieldEdit(user,'useremail')">
+            <div *ngIf="!(user.editUserField == 'all' || user.editUserField == 'useremail')"> {{user.UserEmail}} </div>
+            <div *ngIf="user.editUserField == 'all' || user.editUserField == 'useremail'">
+              <input type="text" [(ngModel)]="user.UserEmail" class="form-control">
+            </div>
+          </td>
+          <!-- (dblclick)="fieldEdit(user,'userpassword')" -->
+          <td class="col-2" (dblclick)="fieldEdit(user,'userpassword')">
+            <div *ngIf="!(user.editUserField == 'all' || user.editUserField == 'userpassword')"> {{user.UserPassword}}
+            </div>
+            <div *ngIf="user.editUserField == 'all' || user.editUserField == 'userpassword'">
+              <input type="text" [(ngModel)]="user.UserPassword" class="form-control">
+            </div>
+          </td>
+          <td class="col-2">
+            <div *ngIf="!(user.editUserField == '')">
+              <div class="center">
+                <button (click)="updateUser(user)" class="btn btn-primary btn-sm">Save</button>
+                <button (click)="cancelEdit()" class="btn btn-danger btn-sm ">Cancel</button>
+              </div>
+            </div>
+            <div *ngIf="(user.editUserField == '')">
+              <div class="center">
+                <button (click)="userEdit(user)" class="btn btn-secondary btn-sm">Edit</button>
+                <button (click)="deleteUser(user)" class="btn btn-danger btn-sm ">Delete</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="form-group col-4">
+        <label for="pageSize">Items per page:&emsp;</label>
+        <select (change)="onTableSizeChange($event)" class="custom-select" id="pageSize">
+          <option *ngFor="let size of tableSizes">{{size}}</option>
+        </select>
+      </div>
+      <div class="pagination justify-content-end col-8">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" (click)="getAllUser()">Reflesh</button>

@@ -5,3 +5,12 @@
 npm install -g @angular/cli
 dotnet ef migrations add _migrationName
 dotnet ef database update
+
+ UserDTO _user;
+            _user.UserName = user.UserName;
+            _user.UserSurname =user.UserSurname;
+            _user.UserEmail =user.UserEmail;
+            _user.UserPassword =user.UserPassword;
+
+
+            data kısmına eklenecek dye giderken!!!!!
