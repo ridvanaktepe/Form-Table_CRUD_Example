@@ -21,7 +21,7 @@ export class FormComponent implements OnInit {
     UserName: '',
     UserSurname: '',
     UserEmail: '',
-    UserPassword: '',
+    UserDate: '',
     editUser: false,
     editUserField: ''
   };
@@ -30,7 +30,7 @@ export class FormComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     surname: new FormControl('', [Validators.required, Validators.minLength(2),]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(2),]),
+    date: new FormControl('', [Validators.required,]),
   });
 
   userList$: User[] = [];
@@ -46,12 +46,13 @@ export class FormComponent implements OnInit {
       this.user.UserName = this.UserForm.value.name!;
       this.user.UserSurname = this.UserForm.value.surname!;
       this.user.UserEmail = this.UserForm.value.email!;
-      this.user.UserPassword = this.UserForm.value.password!;
+      this.user.UserDate = this.UserForm.value.date!;
 
       this.service.AddUser(this.user).subscribe((responce) => {
         console.log(this.service.userListSubject.value);
         console.log(responce);
-        this.toastr.success("The user has been successfully added")
+        this.toastr.success("The user has been successfully added");
+        this.UserForm.reset();
       },
       (error) => this.toastr.error(error));
 

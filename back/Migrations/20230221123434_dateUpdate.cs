@@ -4,7 +4,7 @@
 
 namespace back.Migrations
 {
-    public partial class _one : Migration
+    public partial class dateUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace back.Migrations
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserSurname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,13 +26,13 @@ namespace back.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "UserEmail", "UserName", "UserPassword", "UserSurname" },
-                values: new object[] { 1, "ridvan@gmail.com", "Rıdvan", "123", "Aktepe" });
+                columns: new[] { "UserId", "UserDate", "UserEmail", "UserName", "UserSurname" },
+                values: new object[] { 1, "1992-08-03", "ridvan@gmail.com", "Rıdvan", "Aktepe" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "UserEmail", "UserName", "UserPassword", "UserSurname" },
-                values: new object[] { 2, "esra@gmail.com", "Esra", "321", "Aktepe" });
+                columns: new[] { "UserId", "UserDate", "UserEmail", "UserName", "UserSurname" },
+                values: new object[] { 2, "1992-01-30", "esra@gmail.com", "Esra", "Aktepe" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserId",

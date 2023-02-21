@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
     UserName: '',
     UserSurname: '',
     UserEmail: '',
-    UserPassword: '',
+    UserDate: '',
     editUser: false,
     editUserField: ''
   };
@@ -64,7 +64,7 @@ export class TableComponent implements OnInit {
     let index = this.userList$.findIndex((_user) => _user.UserId === this.userEditCopy.UserId);
 
     if (this.userEditCopy.UserName !== userEdited?.UserName || this.userEditCopy.UserSurname !== userEdited?.UserSurname ||
-      this.userEditCopy.UserEmail !== userEdited?.UserEmail || this.userEditCopy.UserPassword !== userEdited?.UserPassword) {
+      this.userEditCopy.UserEmail !== userEdited?.UserEmail || this.userEditCopy.UserDate !== userEdited?.UserDate) {
 
       this.userList$[index] = this.userEditCopy;
 

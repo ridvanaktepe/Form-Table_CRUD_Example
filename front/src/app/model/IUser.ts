@@ -3,7 +3,7 @@ export interface IUser {
   UserName: string;
   UserSurname: string;
   UserEmail: string;
-  UserPassword: string;
+  UserDate: string;
   editUser: boolean;
   editUserField: string;
 }

@@ -29,13 +29,13 @@ namespace back.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
+                    b.Property<string>("UserDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserPassword")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserSurname")
@@ -52,17 +52,17 @@ namespace back.Migrations
                         new
                         {
                             UserId = 1,
+                            UserDate = "1992-08-03",
                             UserEmail = "ridvan@gmail.com",
                             UserName = "Rıdvan",
-                            UserPassword = "123",
                             UserSurname = "Aktepe"
                         },
                         new
                         {
                             UserId = 2,
+                            UserDate = "1992-01-30",
                             UserEmail = "esra@gmail.com",
                             UserName = "Esra",
-                            UserPassword = "321",
                             UserSurname = "Aktepe"
                         });
                 });

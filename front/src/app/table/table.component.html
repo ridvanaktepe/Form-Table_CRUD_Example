@@ -12,7 +12,7 @@
           <th scope="col"> Name <i class="fa fa-sort" (click)="sort('UserName')"></i></th>
           <th scope="col"> Surname <i class="fa fa-sort" (click)="sort('UserSurname')"></i></th>
           <th scope="col"> Email <i class="fa fa-sort" (click)="sort('UserEmail')"></i></th>
-          <th scope="col"> Password <i class="fa fa-sort" (click)="sort('UserPassword')"></i></th>
+          <th scope="col"> Birtdate <i class="fa fa-sort" (click)="sort('UserDate')"></i></th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -44,12 +44,12 @@
               <input type="text" [(ngModel)]="user.UserEmail" class="form-control">
             </div>
           </td>
-          <!-- (dblclick)="fieldEdit(user,'userpassword')" -->
-          <td class="col-2" (dblclick)="fieldEdit(user,'userpassword')">
-            <div *ngIf="!(user.editUserField == 'all' || user.editUserField == 'userpassword')"> {{user.UserPassword}}
+          <!-- (dblclick)="fieldEdit(user,'userdate')" -->
+          <td class="col-2" (dblclick)="fieldEdit(user,'userdate')">
+            <div *ngIf="!(user.editUserField == 'all' || user.editUserField == 'userdate')"> {{user.UserDate | date: 'dd/MM/yyyy' }}
             </div>
-            <div *ngIf="user.editUserField == 'all' || user.editUserField == 'userpassword'">
-              <input type="text" [(ngModel)]="user.UserPassword" class="form-control">
+            <div *ngIf="user.editUserField == 'all' || user.editUserField == 'userdate'">
+              <input type="date" [(ngModel)]="user.UserDate" class="form-control">
             </div>
           </td>
           <td class="col-2">
@@ -84,4 +84,4 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-primary" (click)="getAllUser()">Reflesh</button>
+<!-- <button type="button" class="btn btn-primary" (click)="getAllUser()">Reflesh</button> -->

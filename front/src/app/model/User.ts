@@ -5,7 +5,7 @@ export class User implements IUser {
   UserName: string;
   UserSurname: string;
   UserEmail: string;
-  UserPassword: string;
+  UserDate: string;
   editUser: boolean;
   editUserField: string;
 
@@ -14,7 +14,7 @@ export class User implements IUser {
     UserName: string = '',
     UserSurname: string = '',
     UserEmail: string = '',
-    UserPassword: string = '',
+    UserDate: string = '',
     editUser: boolean = false,
     editUserField: string = ''
 
@@ -23,7 +23,7 @@ export class User implements IUser {
     this.UserName = UserName;
     this.UserSurname = UserSurname;
     this.UserEmail = UserEmail;
-    this.UserPassword = UserPassword;
+    this.UserDate = UserDate;
     this.editUser = editUser;
     this.editUserField= editUserField;
   }

@@ -22,8 +22,8 @@ namespace back.Database.Concrete
             .IsUnique(true);
 
             modelBuilder.Entity<User>().HasData(
-                new User() { UserId = 1, UserName = "Rıdvan", UserSurname = "Aktepe", UserEmail = "ridvan@gmail.com", UserPassword = "123" },
-                new User() { UserId = 2, UserName = "Esra", UserSurname = "Aktepe", UserEmail = "esra@gmail.com", UserPassword = "321" }
+                new User() { UserId = 1, UserName = "Rıdvan", UserSurname = "Aktepe", UserEmail = "ridvan@gmail.com", UserDate = "1992-08-03" },
+                new User() { UserId = 2, UserName = "Esra", UserSurname = "Aktepe", UserEmail = "esra@gmail.com", UserDate = "1992-01-30" }
             );
         }
 
