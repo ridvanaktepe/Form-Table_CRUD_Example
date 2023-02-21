@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map, tap, delay, take, catchError, throwError, Subject, BehaviorSubject, of, switchMap } from 'rxjs';
 import { User } from '../model/User';
 import { IUser } from 'app/model/IUser';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class DbServiceService {
   userListSubject: BehaviorSubject<User[]> = new BehaviorSubject(this.userList$);
   // public subject$: Observable<User[]> = this._subject.asObservable(); // asobservavle ne işe yarıyor ?
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, public toastr: ToastrService) {  }
 
   ngOnInit() {
     this.GetUserList();

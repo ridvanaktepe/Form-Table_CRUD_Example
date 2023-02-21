@@ -4,6 +4,7 @@ import { IUser } from '../model/IUser';
 import { User } from '../model/User';
 import { DbServiceService } from '../service/db-service.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-table',
@@ -31,7 +32,7 @@ export class TableComponent implements OnInit {
     editUserField: ''
   };
 
-  constructor(public service: DbServiceService) { }
+  constructor(public service: DbServiceService, public toastr: ToastrService) { }
 
   //  ngOnChanges(changes: SimpleChanges): void {
   //     console.log(changes);
@@ -104,9 +105,11 @@ export class TableComponent implements OnInit {
     this.service.UpdateUser(user).subscribe({
       next: (_) => {
         this.userEditCopy = { ...user };
+        this.toastr.info("The user has been successfully updated");
       },
       error: (error) => {
         console.log(error);
+        this.toastr.error("Something went wrong");
       },
     });
 
@@ -116,6 +119,7 @@ export class TableComponent implements OnInit {
 
   deleteUser(user: User) {
     this.service.DeleteUser(user);
+    this.toastr.warning("The user has been successfully deleted");
     // let index = this.userList$.indexOf(user);
     // this.userList$.splice(index, 1);
   }

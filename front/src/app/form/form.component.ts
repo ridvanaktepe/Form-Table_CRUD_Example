@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/User';
 import { IUser } from '../model/IUser';
 import { DbServiceService } from '../service/db-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,12 +33,12 @@ export class FormComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(2),]),
   });
 
-  userList$:User[] = [];
+  userList$: User[] = [];
 
-  constructor(private service: DbServiceService) { }
+  constructor(private service: DbServiceService, public toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.service.userListSubject.subscribe(userListStream=>{this.userList$=userListStream;});
+    this.service.userListSubject.subscribe(userListStream => { this.userList$ = userListStream; });
   }
 
   PostForm() {
@@ -47,12 +48,17 @@ export class FormComponent implements OnInit {
       this.user.UserEmail = this.UserForm.value.email!;
       this.user.UserPassword = this.UserForm.value.password!;
 
-      this.service.AddUser(this.user).subscribe((responce)=>{
+      this.service.AddUser(this.user).subscribe((responce) => {
         console.log(this.service.userListSubject.value);
         console.log(responce);
-       });
+        this.toastr.success("The user has been successfully added")
+      },
+      (error) => this.toastr.error(error));
 
-      }
+    }
+    else{
+      this.toastr.warning("Please fill the form");
     }
   }
+}
 
